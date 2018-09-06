@@ -5,13 +5,15 @@ import binarySearch from './binarySearch';
 import linearSearch from './linearSearch';
 import { arr } from './linearSearch';
 
+const sortedArray = [...arr].sort((a, b) => a - b);
+
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       inputValue: '',
       dataSet: arr,
-      sortedDataSet: arr.sort(),
+      sortedDataSet: sortedArray,
       linSearchResult: '',
       binSearchResult: ''
     };
