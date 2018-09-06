@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './App.css';
+import binarySearch from './binarySearch';
 import linearSearch from './linearSearch';
 import { arr } from './linearSearch';
 
@@ -10,17 +11,21 @@ class App extends React.Component {
     this.state = {
       inputValue: '',
       dataSet: arr,
-      searchResult: ''
+      sortedDataSet: arr.sort(),
+      linSearchResult: '',
+      binSearchResult: ''
     };
   }
 
   submitHandler(e) {
     e.preventDefault();
     const num = parseInt(this.state.inputValue, 10);
-    const searchResult = linearSearch(this.state.dataSet, num);
+    const linSearchResult = linearSearch(this.state.dataSet, num);
+    const binSearchResult = binarySearch(this.state.sortedDataSet, num);
     this.setState({
       inputValue: '',
-      searchResult
+      linSearchResult,
+      binSearchResult
     });
   }
 
@@ -38,8 +43,10 @@ class App extends React.Component {
           <input type='text' id='input' value={this.state.inputValue} onChange={e => this.updateInputValue(e)} />
           <button>Run</button>
         </form>
-        <p>{this.state.searchResult}</p>
-          
+        <h2>{ this.state.linSearchResult ? 'Linear Search Result:' : ''}</h2>
+        <p>{this.state.linSearchResult}</p>
+        <h2>{ this.state.binSearchResult ? 'Binary Search Result:' : ''}</h2>
+        <p>{this.state.binSearchResult}</p>
       </div>
     );
   }
